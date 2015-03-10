@@ -97,6 +97,14 @@ Looks good.
 wiki.debian.org/SNMP
 
 
+20. Updated /etc/snmp/snmp.conf such that snmp* commands that they should load ALL
+mibs in the /usr/share/mibs/ and /home/marcilr/.snmp/mibs:
+
+???
+
+FIXME: Need to update.
+
+
 
 Links
 =====
