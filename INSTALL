@@ -5,3 +5,7 @@ Copyright (C) 2015 by Raymond E. Marcil <marcilr@gmail.com>
 
 Installation of snmp on Debian wheezy 7.8.0 amd64
 
+
+1. Install tools and agent:
+# aptitude install snmp snmpd
+
