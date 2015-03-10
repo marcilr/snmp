@@ -1,0 +1,29 @@
+packages.txt
+Created Tue Mar  4 14:32:54 AKST 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+snmp - SNMP (Simple Network Management Protocol) applications
+  Installed on GCI covellite debian wheezy 7.4 amd64 - Mar 3, 2014
+  File list of package snmp in wheezy of architecture amd64
+  Has snmpget, snmpset, snmpstatus, snmpwalk, and snmpdelta among
+  others.  Great stuff.
+
+  Net-SNMP
+  https://packages.debian.org/wheezy/amd64/snmp/filelist
+  http://www.net-snmp.org/
+
+Binaries in snmp package
+========================
+snmpget        - communicates with a network entity using SNMP GET requests
+
+snmpgetnext    - communicates with  a network entity using SNMP GETNEXT
+                 requests 
+
+snmpset        - communicates with a network entity using SNMP SET requests
+
+snmptranslate  - translate  MIB  OID names between numeric and
+                 textual forms
+
+snmpwalk       - retrieve a subtree of management values using SNMP GETNEXT
+                 requests
