@@ -66,3 +66,17 @@ netsnmp
 
 The snmp-mibs-downloader package above populated /var/lib/mibs/
 
+7. Restart snmpd for mibs update to take effect:
+# /etc/init.d/snmpd restart
+Restarting network management services: snmpd.
+#
+
+8. To allow access from localhost uncomment line in 
+/etc/snmp/snmpd.conf:
+
+rocommunity public  localhost
+
+# /etc/init.d/snmpd restart    <=== Think restart is required
+                                    for snmpd.conf change.
+
+
