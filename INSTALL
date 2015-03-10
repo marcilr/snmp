@@ -16,3 +16,6 @@ $ ps ax | grep [s]nmp
 $
 
 Looks good.
+
+# If you want the OIDs to resolve to their text description,
+activate the non-free repository and install snmp-mibs-downloader:
