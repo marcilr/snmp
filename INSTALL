@@ -80,3 +80,16 @@ rocommunity public  localhost
                                     for snmpd.conf change.
 
 
+9. Can no query local server as 'public' as community string:
+
+$ snmpwalk -v1 -cpublic localhost
+SNMPv2-MIB::sysDescr.0 = STRING: Linux covellite 3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2 x86_64
+SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (79754) 0:13:17.54
+SNMPv2-MIB::sysContact.0 = STRING: Me <me@example.org>
+...
+NOTIFICATION-LOG-MIB::nlmLogDateAndTime."default".1 = \
+STRING: 2015-3-10,9:23:43.0,-8:0
+$
+
+Looks good.
