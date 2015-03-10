@@ -51,6 +51,13 @@ package above) and then add the following to /etc/default/snmpd:
 
 export MIBS=/usr/share/mibs
 
+$ diff snmpd snmpd-ORIG-20150310 
+5c5
+< export MIBS=/usr/share/mibs
+---
+> export MIBS=
+$ 
+
 On inspection /usr/share/mibs has:
 $ ls -l /usr/share/mibs/
 iana -> /var/lib/mibs/iana
@@ -58,6 +65,4 @@ ietf -> /var/lib/mibs/ietf
 netsnmp
 
 The snmp-mibs-downloader package above populated /var/lib/mibs/
-
-
 
