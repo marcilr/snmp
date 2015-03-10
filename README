@@ -5,6 +5,9 @@ Copyright (C) 2015 by Raymond E. Marcil <marcilr@gmail.com>
 
 Filelist
 ========
+links.txt
+  Installation of snmp related links.
+
 packages.txt
   SNMP related packages.
 
