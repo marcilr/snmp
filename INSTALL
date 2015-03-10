@@ -9,3 +9,10 @@ Installation of snmp on Debian wheezy 7.8.0 amd64
 1. Install tools and agent:
 # aptitude install snmp snmpd
 
+2. Verify snmpd is running:
+$ ps ax | grep [s]nmp
+ 4972 ?        S      0:00 /usr/sbin/snmpd -Lsd -Lf /dev/null \
+-u snmp -g snmp -I -smux -p /var/run/snmpd.pid
+$
+
+Looks good.
