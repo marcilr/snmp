@@ -42,3 +42,22 @@ End of MIB
 $
 
 Looks good.
+
+
+6. Configure snmpd daemon in /etc/snmp/snmpd.conf:
+
+For human-readable names for OIDs, first install MIBS ( snmp-mibs-downloader
+package above) and then add the following to /etc/default/snmpd:
+
+export MIBS=/usr/share/mibs
+
+On inspection /usr/share/mibs has:
+$ ls -l /usr/share/mibs/
+iana -> /var/lib/mibs/iana
+ietf -> /var/lib/mibs/ietf
+netsnmp
+
+The snmp-mibs-downloader package above populated /var/lib/mibs/
+
+
+
