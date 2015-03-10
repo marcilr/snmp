@@ -22,3 +22,7 @@ activate the non-free repository and install snmp-mibs-downloader:
 
 # aptitude install snmp-mibs-downloader
 
+4. Update MIBS to latest versions with:
+# download-mibs
+
+This downloads the mibs to /var/lib/mibs/
