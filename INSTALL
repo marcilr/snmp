@@ -26,3 +26,19 @@ activate the non-free repository and install snmp-mibs-downloader:
 # download-mibs
 
 This downloads the mibs to /var/lib/mibs/
+
+5. In snmp server is running on localhost, with community string
+'public' (it is by default), you can test if MIBS are working properly
+with:
+
+$ snmpwalk -v1 -cpublic localhost
+SNMPv2-MIB::sysDescr.0 = STRING: Linux covellite 3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2 x86_64
+SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (116841) 0:19:28.41
+SNMPv2-MIB::sysContact.0 = STRING: Me <me@example.org>
+...
+HOST-RESOURCES-MIB::hrSystemMaxProcesses.0 = INTEGER: 0
+End of MIB
+$
+
+Looks good.
