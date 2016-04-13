@@ -1,0 +1,426 @@
+glossary.txt
+Created Wed Apr 30 10:07:55 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Glossary
+
+
+agent - A hardware device or software program that reports to an SNMP manager.
+  In network alarm management, an SNMP agent is typically an RTU, but other
+  network devices like switches, routers and hubs can also act as SNMP agents. 
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+ASN.1 - In telecommunications and computer networking, Abstract Syntax
+  Notation One (ASN.1) is a standard and flexible notation that describes data
+  structures for representing, encoding, transmitting, and decoding data.  It
+  provides a set of formal rules for describing the structure of objects that
+  are independent of machine-specific encoding techniques and is a precise,
+  formal notation that removes ambiguities.
+  http://en.wikipedia.org/wiki/Management_information_base#Abstract_Syntax_Notation_One_.28ASN.1.29
+
+authentication - An SNMPv3 security measure that ensures that only the
+  intended recipient receives the SNMP message.  Secret authentication keys
+  are generated based upon the EngineID of the SNMP entity.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+basic messages - Snmp uses five basic messages (Get, GetNext, GetResponse, Set
+  and Trap) to communicate between the manager and the agent.
+
+  The Get and GetNext messages allow the manager to request information for a
+  specific variable. The agent, upon receiving a Get or GetNext message, will
+  issue a GetResponse message to the manager with either the information
+  requested or an error indication as to why the request cannot be processed.
+
+  A Set message allows the manager to request a change be made to the value of
+  a specific variable in the case of an alarm remote that will operate a relay.
+  The agent will then respond with a GetResponse message indicating the change
+  has been made or an error indication as to why the change cannot be made.
+  
+  The Trap message allows the agent to spontaneously inform the manager of an
+  "important" event.
+  
+  As you can see, most of the messages (Get, GetNext, and Set) are only issued
+  by the SNMP manager.  Because the Trap message is the only message capable
+  of being initiated by an agent, it is the message used by DPS Telecom remote
+  telemetry units (RTUs) to report alarms.  This notifies the SNMP manager as
+  soon as an alarm condition occurs, instead of waiting for the
+  SNMP manager to ask.
+
+  The small number of commands used is only one of the reasons SNMP is simple.
+  The other simplifying factor is its reliance on an unsupervised or
+  connectionless communication link.
+
+  This simplicity has led directly to its widespread use, specifically in the
+  Internet Network Management Framework.  Within this framework, it is
+  considered robust because of the independence of the managers from the
+  agents; that is, if an agent fails, the manager will continue to function,
+  or vice versa.
+  SNMP-Tutorial.pdf, Part 2: How SNMP Handles Alarm Messages, p. 5
+
+communication layors - SNMP resides in what is called the Application layer,
+  UDP resides in the Transport layer and IP resides in the Internet layer
+  (somewhat obvious). The fourth layer is the Network Interface layer where
+  the assembled packet is actually interfaced to some kind of transport media
+  (for example, twisted pair copper, RG58 co-axial or fiber).  While this
+  multi-layer model may seem a bit confusing, it effectively isolates the
+  tasks of communication and ultimately assists in designing and implementing 
+  a network.
+
+  Application Layer   SNMP   SMTP   Telnet   HTTP    FTP
+  Transport Layer     UDP   TCP
+  Internet Layer      IP   ICMP
+  Network Access      PPP   SLIP   ARP
+  Physical Layor      Modem   USART   Ethernet
+
+  SNMP-Tutorial.pdf, Part 5: Understanding Layered Communication, p. 8-8
+
+community string - An SNMP security password.  There are three kinds of
+  community strings:
+  Read Community: Allows an SNMP manager to issue Get and GetNext messages.
+  Write Community: Allows an SNMP manager to issue Set messages
+  Trap Community: Allows an SNMP agent to issue Trap messages.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+  The "SNMP Community string" is like a user id or password that allows access
+  to a router's or other device's statistics... If the community string is
+  correct, the device responds with the requested information.  If the
+  community string is incorrect, the device simply discards the request and
+  does not respond.
+
+  Note: SNMP Community strings are used only by devices which support SNMPv1
+  and SNMPv2c protocol.  SNMPv3 uses username/password authentication, along
+  with an encryption key.
+
+  By convention, most SNMPv1-v2c equipment ships from the factory with a
+  read-only community string set to "public".  It is standard practice for
+  network managers to change all the community strings to customized values in
+  the device setup.
+
+  What is an "SNMP Community String"
+  http://www.paessler.com/manuals/prtg_traffic_grapher/whatisansnmpcommunitystring
+
+compiling - The process of importing a MIB file into an SNMP manager.  To
+  compile properly, a MIB file must be formatted in a text file according to
+  the Structure of Management Information (SMI) standard.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+COS (Change of State) alarm - A telemetry alarm that is clearly labeled as
+  reporting a change in status from clear to alarm or from alarm to clear.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+EngineID - In SNMPv3, a unique identifier for each SNMP entity.  An entity may
+  send an empty message to another entity to request its EngineID prior to
+  initiating communication.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+event - In SNMP terms, any change of status in a managed object in the
+  network.  SNMP equipment can generate traps for many different kinds of
+  events, not all of which are important for telemetry.  The ability to filter
+  unimportant events is essential for high-quality SNMP alarm management
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+Get - An SNMP message issued by a manager that requests the status of a
+  managed object.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+GetNext - An SNMP message issued by a manager, used to walk down a range of
+  OIDs. The GetNext request retrieves the value of the managed object one
+  number after the OID listed in the request.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+GetResponse - SNMP message issued by an agent in response to a Get, GetNext or
+  Set request from the SNMP manager.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+inform notification - An SNMP message (supported in some v2c and v3
+  implementations) that is similar to a trap but requires a confirmation
+  response from the manager.  This is more robust than a standard trap and
+  offers better reliability, but it also consumes more network resources.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+IP - Internet Protocol: the network layer datagram protocol of the TCP/IP
+  protocol suite. SNMP runs over UDP, which in turn runs over IP.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+managed objects - Values of network devices that can be read or overwritten by
+  the SNMP manager, like alarm status, control relay status, system uptime,
+  etc.  In SNMP terms, every network device is defined in the MIB as a set of
+  managed objects.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+MIB - A management information base (MIB) is a database used for managing the
+  entities in a communications network.  Most often associated with the Simple
+  Network Management Protocol (SNMP), the term is also used more generically
+  in contexts such as in OSI/ISO Network management model.  While intended to
+  refer to the complete collection of management information available on an
+  entity, it is often used to refer to a particular subset, more correctly
+  referred to as MIB-module.
+  http://en.wikipedia.org/wiki/Management_information_base
+
+  The MIB is a data structure that describes SNMP network elements as a list
+  of data objects.  To monitor SNMP devices, your SNMP manager must compile
+  the MIB file for each equipment type in your network.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+  The MIB is organized in a tree structure with individual variables, such as
+  point status or description, being represented as leaves on the branches.
+  A long numeric tag or object identifier (OID) is used to distinguish each
+  variable uniquely in the MIB and in SNMP messages.
+  SNMP-Tutorial.pdf, Part 1: An Introduction to SNMP, p. 4
+
+  What is the MIB?
+  The MIB lists the unique object identifier (OID) of each managed element in
+  an SNMP network.  Your SNMP manager can't monitor your devices unless
+  it has compiled their MIB files.  The MIB is also a guide to the
+  capabilities of your SNMP devices.  For example, if your device's MIB lists
+  OIDs for Traps but not for GetResponse messages, you know it will report
+  alarms, but will not respond to alarm polls.  Learning to read MIBs is
+  difficult, but it's worth the trouble.
+
+  SNMP-Tutorial.pdf, Part 3: Understanding the MIB
+    ( Management Information Base), p. 6
+
+manager - A top-level SNMP master system (hardware or software) serving as the
+  human interface to the SNMP network.  The manager can issue Get, GetNext and
+  Set requests to agents and receives GetResponse and Trap
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 16
+
+MD5 - One process for generating authentication/privacy keys in SNMPv3
+  applications.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+NMS - Network Management Software or Network Management System.  Another term
+  for SNMP manager software or hardware.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+OID - In computing, an object identifier or OID is an identifier used to name
+  an object (compare URN).  Structurally, an OID consists of a node in a
+  hierarchically-assigned namespace, formally defined using the ITU-T's ASN.1
+  standard, X.690.  Successive numbers of the nodes, starting at the root of
+  the tree, identify each node in the tree.
+  http://en.wikipedia.org/wiki/Object_identifier
+
+  A number that uniquely identifies a managed object in an SNMP network.  An
+  OID consists of a series of numbers separated by decimal points.  Each
+  decimal point represents a leaf node in the tree structure of the MIB.  For
+  example, all OIDs for DPS Telecom equipment begin with the numbers
+  1.3.6.1.4.1.2682.  This sequence represents: iso (1); org (3); dod (6);
+  internet (1); private (4); enterprises (1); dpsInc (2682).
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+ports 161 and 162 - The virtual ports most commonly used to transmit SNMP
+  messages. Port 161 is used for messages sent by the manager, and Port 162
+  carries messages sent in the opposite direction from agents.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+privacy - An SNMPv3 security measure.  Privacy encrypts the message contents
+  using a key, so the contents of intercepted messages will not be readable.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+Protocol Data Unit (PDU) - An SNMP message.  There are 5 types of PDU in SNMP
+  v1: Get, GetNext, Set, GetResponse and Trap.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+PING - Packet Internet Gopher (PING): An ICMP (Internet Control Message
+  Protocol) echo request to determine whether a device on an IP network is
+  online.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+proxy agent - An SNMP agent that translates non-SNMP messages and inputs to
+  SNMP.  In network alarm monitoring, a proxy agent is usually an RTU that
+  converts contact closure inputs to SNMP traps, like the NetGuardian 832A.
+  Devices that mediate other alarms in other protocols to SNMP, like the
+  NetMediator T2S (TBOS to SNMP) is also a proxy agent.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+Referenced (RFC) MIBs: MIBs that are required by the main MIB during compiling.
+  If any of these referenced MIBs are missing, the main MIB will not compile
+  properly.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+RTU - Remote Telemetry Units: Can support discrete alarm inputs (digital
+  inputs, analog inputs, ping alarms, control relays, terminal server,
+  transport (lan to site).
+  SNMP-Tutorial.pdf, Part 2: How SNMP Handles Alarm Messages, p. 5
+
+Set - An SNMP message issued by a manager instructing an agent to change a
+  Managed object to a new value
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+SGMP - Simple Gateway Management Protocol: and was intended to be replaced by
+  a solution based on the CMIS/CMIP (Common Management Information
+  Service/Protocol) architecture. This long-term solution, however, never
+  received the widespread acceptance of SNMP.
+  SNMP-Tutorial.pdf, Part 1: An Introduction to SNMP, p. 4
+
+SHA - One process for generating authentication/privacy keys in SNMPv3
+  applications.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+SMI -  Structure of Management Information: the standard that defines the MIB
+  structure.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+  Structure of Management Information
+  From Wikipedia, the free encyclopedia
+  http://en.wikipedia.org/wiki/Structure_of_Management_Information
+
+  libsmi - A Library to Access SMI MIB Information
+  "The core of the libsmi distribution is a library that allows management
+  applications to access SMI MIB module definitions."
+  http://www.ibr.cs.tu-bs.de/projects/libsmi/
+
+SNMP - Simple Network Management Protocol is an "Internet-standard protocol
+  for managing devices on IP networks".  Devices that typically support SNMP
+  include routers, switches, servers, workstations, printers, modem racks and
+  more.[1]  It is used mostly in network management systems to monitor
+  network-attached devices for conditions that warrant administrative
+  attention.
+
+  [1] Douglas R. Mauro & Kevin J. Schmidt. (2001). Essential SNMP (1st ed.).
+  Sebastopol, CA: O'Reilly & Associates.
+
+  http://en.wikipedia.org/wiki/Simple_network_management_protocol
+
+  SNMP is based on the manager/agent model consisting of a manager, an agent,
+  a database of management information, managed objects and the network
+  protocol.  The manager provides the interface between the human network
+  manager and the management system.  The agent provides the interface between
+  the manager and the physical device(s) being managed 
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 4
+
+  SNMP is also packet oriented with the following SNMP v1 packets (Protocol
+  Data Units or PDUs) used to communicate:
+
+    Get
+    GetNext
+    Set
+    GetResponse
+    Trap
+
+  The manager sends a Get or GetNext to read a variable or variables and the
+  agent's response contains the requested information if managed.  The manager
+  sends a Set to change a variable or variables and the agent's response
+  confirms the change if allowed.  The agent sends a Trap when a specific event
+  occurs.
+  SNMP-Tutorial.pdf, Part 4: Understanding Packet Types and Structure, p. 7
+
+SNMPv3 -  ...features several enhancements over earlier versions, but security
+  is the most significant in the majority of SNMP applications. SNMPv3
+ messages may be protected in 2 ways, including encryption to protect the
+  contents of any intercepted traps. SNMPv3 encrypts messages using CBC-DES
+  encryption, a part of the Universal Security Model (USM).
+
+  The "EngineID" Unique Identifier The EngineID in SNMPv3 uniquely identifies
+  each SNMP entity. Conflicts can occur if two SNMP entities have duplicate
+  EngineID's.  The EngineID is used to generate the key for authenticated
+  messages.
+
+  Authentication
+  Authentication is one of two types of security available in SNMPv3.  It is
+  used to ensure that traps are read by only the intended recipient.  As
+  messages are created, they are given a special key that is based on the
+  EngineID of the entity.  The key is shared with the inteneded recipient and
+  used to receive the message.
+
+  Privacy
+  The other of the two SNMPv3 security types, Privacy encrypts the payload of
+  the SNMP message to ensure that it cannot be read by unauthorized users.  Any
+  intercepted traps will be filled with garbled characters and will be
+  unreadable. Privacy is especially useful in applications where SNMP messages
+  must be routed over the Internet.
+
+  The Cost of Security
+  Nothing is free. SNMPv3 can be the secure network management solution you
+  need, but you must be prepared for the additional processing time
+  required to calculate EngineID's during authentication and
+  encrypting/decrypting Privacy-enabled messages.  Ultimately, you must decide
+  if the enhanced security of SNMPv3 is worth the cost in your application.  If
+  you don't need the security, you're probably best running an earlier version
+  that is simpler to maintain.
+
+  SNMPv4?
+  In an effort to reduce the need for future versions of SNMP, the SNMPv3
+  protocol was designed with greater flexibility than previous versions.  This
+  is expected to make the lifespan of SNMPv3 longer than its predecessors.
+
+  SNMP-Tutorial.pdf, Understanding SNMPv3, p. 13
+
+standing alarm list - A list of all uncleared alarms, as maintained by a
+  full-featured network alarm management system.  Standard SNMP managers
+  automatically delete all acknowledged traps, but a standing alarm list
+  displays every alarm that has not been reported as cleared by the monitoring
+  equipment.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+TCP - Transmission Control Protocol: the more common transport layer protocol
+  in the TCP/IP suite.  TCP is considered a "reliable" protocol because it
+  establishes a connection between the host and the recipient, guaranteeing
+  delivery.  UDP, the transport protocol used for SNMP does not establish a
+  connection or guarantee delivery.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+  Although SNMP works over TCP and other protocols, it is most commonly used
+  over UDP that is connectionless and vulnerable to IP spoofing attacks.  Thus,
+  all versions are subject to bypassing device access lists that might have
+  been implemented to restrict SNMP access, though SNMPv3's other security
+  mechanisms should prevent a successful attack.
+  http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol
+
+trap - An SNMP Trap is a change-of-state (COS) message - it could mean an
+  alarm, a clear or simply a status message.  You often have to parse variable
+  bindings to decode a Trap. To make sure the meaning of a Trap is understood,
+  all DPS Telecom SNMP equipment transmits a unique Trap ID for both alarm and
+  clear for each alarm point.  Unlike a classic telemetry master, basic SNMP
+  managers don't keep a standing alarm list, so it's difficult to tell what's
+  happening in your network by looking at a list of Traps.
+  SNMP-Tutorial.pdf, Part 2: How SNMP Handles Alarm Messages, p. 5
+
+  An SNMP message issued by an SNMP agent that reports an event.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+UDP - User Datagram Protocol: the transport layer protocol used to send SNMP
+  messages.  Unlike TCP, UDP is a connectionless protocol that does not
+  guarantee delivery of the data packet.  However, UDP uses fewer network
+  resources than TCP, making it more suitable for transporting a large number
+  of status messages.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+  What is UDP?
+  UDP (User Datagram Protocol) is the IP transport layer protocol that
+  supports SNMP messages. Unlike TCP, UDP is a connectionless protocol.  A UDP
+  host places messages on the network without first establishing a connection
+  with the recipient.  UDP does not guarantee message delivery, but it's a
+  lightweight protocol that can transport a large number of status messages
+  without using too many network resources.
+  SNMP-Tutorial.pdf, Part 4: Understanding Packet Types and Structure, p. 7
+
+variable binding: the data field of a GetResponse or Trap PDU.  Each variable
+  binding lists a managed object and its current value.
+  SNMP-Tutorial.pdf, SNMP Glossary, p. 17
+
+
+Filelist
+========
+SNMP-Tutorial.pdf
+  SNMP Tutorial:
+  Simple Network Management Protocol for real-world
+  telecom network alarm monitoring...
+  o Fast, complete introduction to SNMP
+  o Effective telecom alarm monitoring with SNMP
+  o Integrating legacy equipment to SNMP monitoring
+  o Overcoming the limitations of SNMP
+  o Enhanced security with SNMPv3
+  Version 2.0
+  Released July 21, 2010
+  Pages: 20
+  Pretty good guidebook
+  http://scadahacker.com/library/Documents/ICS_Protocols/SNMP%20Tutorial.pdf
+
+
+Links
+=====
+Simple Network Management Protocol
+From Wikipedia, the free encyclopedia
+http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol
