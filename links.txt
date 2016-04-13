@@ -1,0 +1,83 @@
+links.txt
+Created Mon Mar  3 16:14:22 AKST 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+snmp related links
+
+
+Links
+=====
+File list of package snmp in wheezy of architecture amd64
+Has snmpget, snmpset, snmpstatus, and snmpwalk among others.
+Good stuff.
+https://packages.debian.org/wheezy/amd64/snmp/filelist
+
+Debian SNMP wiki
+https://wiki.debian.org/SNMP
+
+Installing net-snmp MIBs on Ubuntu and Debian
+Layer 3 Networking Blog
+Very good Net-SNMP, MIB, and installation details.
+http://l3net.wordpress.com/2013/05/12/installing-net-snmp-mibs-on-ubuntu-and-debian/
+
+Management information base
+From Wikipedia, the free encyclopedia
+http://en.wikipedia.org/wiki/Management_information_base
+
+Net-SNMP Tutorial -- SNMPv3 Options
+Has authentication info.
+http://www.net-snmp.org/tutorial/tutorial-5/commands/snmpv3.html
+
+Set SNMP Authentication and Privacy Protocols
+Has fine Authentication vs. Privacy details.
+http://pubs.vmware.com/vsphere-51/index.jsp#com.vmware.vsphere.monitoring.doc/GUID-80F57452-2676-45B8-8FD9-3C8DA8A81E99.html
+
+Simple Network Management Protocol
+From Wikipedia, the free encyclopedia
+http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol#RFC_references
+
+SINT - snmptranslate and snmpwalk
+http://cyberasylum.eu/sint-snmptranslate-and-snmpwalk
+
+SNMP Basics: What is SNMP & How Do I Use It?
+http://www.networkmanagementsoftware.com/snmp-tutorial
+
+SNMP CLI
+SNMP at the Command Line
+Very good info here.
+http://www.tobiassystems.com/products/network-management-solutions/additional-snmp-content-and-resources/snmp-cli/
+
+SNMP Clients
+snmp install/configuration for linux
+https://wiki.debian.org/SNMP
+
+SNMP exercises, part I
+https://nsrc.org/workshops/ws-files/2011/sanog17/exercises/exercises-snmp-v1-v2c.html
+
+SNMP, MIBs and OIDs - an Overview
+http://kb.paessler.com/en/topic/653-how-do-snmp-mibs-and-oids-work
+
+SNMP Tutorial Part 2: Rounding Out the Basics
+http://www.networkmanagementsoftware.com/snmp-tutorial-part-2-rounding-out-the-basics
+
+snmpcmd
+snmp tool command line arguments
+http://www.linuxcommand.org/man_pages/snmpcmd1.html
+
+snmptrapd
+http://www.net-snmp.org/docs/man/snmptrapd.html
+
+The Fast Track Introduction to SNMP Alarm Monitoring by Marshall DenHartog
+Very good resources here:
+SNMP, RTUs, Masters, All Products, White Papers, Case Studies
+http://scadahacker.com/library/Documents/ICS_Protocols/SNMP%20Tutorial.pdf
+http://www.dpstele.com/snmp/tutorial/index.php
+
+Walk the SNMP Walk
+by Michael W. Lucas on 07/27/2000
+Great SNMP overview with examples.
+http://www.onlamp.com/pub/a/bsd/2000/07/27/Big_Scary_Daemons.html
+
+What's with the different SNMP versions? v1, v2c, v3?
+http://blog.logicmonitor.com/2012/10/05/whats-with-the-different-snmp-versions-s1-v2c-v3/
