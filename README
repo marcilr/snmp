@@ -27,8 +27,9 @@ mibs/
 options.txt
   Options for SNMP commands
 
+
 packages.txt
-  snmp packages
+  SNMP packages for Debian
 
 snmpget/
   communicates with a network entity using SNMP GET requests
