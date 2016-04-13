@@ -1,0 +1,57 @@
+#
+# svn_ext_val.txt
+# Created Mon Nov 11 13:28:41 AKST 2013
+# by Raymond E. Marcil <marcilr@gmail.com>
+#
+
+#
+# List of repo hierarchical directories to checkout under snmp/
+#
+# 00INSTALL/       Installation of snmp
+# docs/            Documentation
+#
+# mibs/            Management Information Base
+#                  http://en.wikipedia.org/wiki/Management_information_base
+#
+# net-snmp/        Net-SNMP is a suite of applications used to implement
+#                  SNMP v1, SNMP v2c and SNMP v3 using both IPv4 and IPv6.
+#                  http://www.net-snmp.org/
+#
+# snmpget/         Communicates with a network entity using SNMP GET requests
+#
+# snmpgetnext/     communicates with a network entity using
+#                  SNMP GETNEXT requests
+#
+# snmpd/           d	aemon to respond to SNMP request packets
+# snmpset/         communicates with a network entity using SNMP SET requests
+#
+# snmptranslate/   translate  MIB  OID names between numeric and textual
+#                  forms.  Can be used to view the MIB tree with:
+#                    $ snmptranslate -Tp
+#
+# snmptrap/        snmptrap, snmpinform - sends an SNMP notification to a manager
+#
+# snmptrapd/       Receive and log SNMP trap messages.
+#
+# snmpwalk/        snmpwalk - retrieve a subtree of management values using
+#                  SNMP GETNEXT requests
+#
+# syntax/          Syntax
+# tex/             LaTeX documents
+# traps/           SNMP traps
+#
+../../snmp/00INSTALL/00INSTALL           ./00INSTALL
+../../snmp/docs/docs                     ./docs
+../../snmp/mibs/mibs                     ./mibs
+../../snmp/net-snmp/net-snmp             ./net-snmp
+../../snmp/snmpd/snmpd                   ./snmpd
+../../snmp/snmpget/snmpget               ./snmpget
+../../snmp/snmpgetnext/snmpgetnext       ./snmpgetnext
+../../snmp/snmpset/snmpset               ./snmpset
+../../snmp/snmptrap/snmptrap             ./snmptrap
+../../snmp/snmptrapd/snmptrapd           ./snmptrapd
+../../snmp/snmptranslate/snmptranslate   ./snmptranslate
+../../snmp/snmpwalk/snmpwalk             ./snmpwalk
+../../snmp/syntax/syntax                 ./syntax
+../../snmp/tex/tex                       ./tex
+../../snmp/traps/traps                   ./traps
