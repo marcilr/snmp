@@ -1,0 +1,255 @@
+snmpwalk.txt
+Created Wed Apr 30 10:20:46 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+snmpwalk - retrieve a subtree of management values using SNMP GETNEXT requests
+
+
+The SNMPWALK command is used to retrieve a MIB subtree and print the results
+to the console.  In reality, there is no "WALK" operation defined in the SNMP
+protocol.  The SNMPWALK actually tool uses a series of GETNEXT requests in a
+loop.  The first iteration of GETNEXT uses the OID supplied on the command
+line, all  subsequent GETNEXTs use the OID contained in the previous response.
+The loop stops if the returned OID in the response is outside the subtree of
+the original OID or the end of MIB is reached.
+
+unleashnetworks.com/
+
+
+The snmpwalk command is designed to perform a sequence of chained GETNEXT
+requests automatically, rather than having to issue the necessary snmpgetnext
+requests by hand.
+
+net-snmp.org/
+
+Options
+=======
+
+Parameter	Command Line Flag	  snmp.conf token
+---------------------------------------------------------------------------
+securityName    -u NAME	defSecurityName   NAME
+authProtocol    -a (MD5|SHA)              defAuthType (MD5|SHA)
+privProtocol    -x (AES|DES)              defPrivType DES
+authKey         -A PASSPHRASE             defAuthPassphrase PASSPHRASE
+privKey         -X PASSPHRASE             defPrivPassphrase PASSPHRASE
+
+securityLevel   -l (noAuthNoPriv|\        defSecurityLevel (noAuthNoPriv|\
+                   authNoPriv|authPriv)   authNoPriv|authPriv)
+
+context         -n CONTEXTNAME            defContext CONTEXTNAME
+
+www.net-snmp.org/tutorial/tutorial-5/commands/snmpv3.html
+
+-c community
+  Set the community string for SNMPv1/v2c transactions.  Overrides the
+  defCommunity token in the snmp.conf file.
+
+-M DIRLIST
+  Specifies a colon separated list of directories to search for MIBs.  This
+  overrides (or augments) the environment variable MIBDIRS, the snmp.conf
+  directive mibdirs, and the default directory hardcoded into the Net-SNMP
+  library (/usr/local/share/snmp/mibs).
+
+  If DIRLIST has a leading '-' or '+' character, then the given directories
+  are added to the default list, being searched before or after the
+  directories on this list respectively.  Otherwise, the specified directories
+  are searched instead of this default list.
+
+-m MIBLIST
+  Specifies a colon separated list of MIB modules (not files) to load for this
+  application.  This overrides (or augments) the environment variable MIBS,
+  the snmp.conf directive mibs, and the list of MIBs hardcoded into the
+  Net-SNMP library.
+
+  If MIBLIST has a leading '-' or '+' character, then the MIB modules listed
+  are loaded in addition to the default list, coming before or after this list
+  respectively.  Otherwise, the specified MIBs are loaded instead of this
+  default list.
+
+  The special keyword ALL is used to load all MIB modules in the MIB directory
+  search list.  Every file whose name does not begin with "." will be parsed
+  as if it were a MIB file.                                        
+                                        
+net-snmp.sourceforge.net/docs/man/snmpcmd.html
+
+  "use the -m ALL command-line option. With this option, snmpwalk parses all
+  the files in the MIB repository."
+  snmpwalk, Net-SNMP Command-Line Tools, Essential SNMP 
+  docstore.mik.ua/orelly/networking_2ndEd/snmp/appc_03.htm
+
+NOTE:  The Upsmate.mib (Prudhoe Bay UPS snmpo alarms) mib object is XPPC-MIB:
+
+$ grep XPPC ~/.snmp/mibs/Upsmate.mib 
+XPPC-MIB DEFINITIONS ::= BEGIN
+$
+
+
+export SNMPCONFPATH=/etc/snmp/snmp.conf
+export MIBS=all
+export MIBSDIR=/home/marcilr/.snmp/mibs:/usr/share/mibs
+
+Resolved all Upsmate.mib mib dependencies.  This now works:
+$ snmpwalk -v 1  -m XPPC-MIB -c public localhost .1.3.6.1.4.1.935.0
+$
+
+No output but no errors either.
+
+Getting more errors for:
+  Cannot find module (UCD-DLMOD-MIB): At line 12 in (none)
+  Cannot find module (UCD-DISKIO-MIB): At line 12 in (none)
+  Cannot find module (LM-SENSORS-MIB): At line 12 in (none)
+  ...
+  (NET-SNMP-VACM-MIB): At line 12 in (none)
+
+Fixed the immediate errors with dependent RFC mibs:
+  RFC1155-SMI.txt
+  RFC1158-MIB.txt
+  RFC-1212.txt
+  RFC1213-MIB.txt
+  RFC-1215.txt
+
+This still yields errors:
+   $ snmpwalk -v 1  -m XPPC-MIB -c public localhost 1.3.6.1.4.1.935
+   ...
+   Cannot adopt OID in XPPC-MIB: upsThreePhaseOutputFrequency ::= { upsThreePhaseOutputGrp 1 }
+
+This still yields errors:
+  $ snmptranslate -m +XPPC-MIB -IR -On DESCRIPTION
+  Cannot find module (UCD-DLMOD-MIB): At line 0 in (none)
+  Cannot adopt OID in XPPC-MIB: upsThreePhaseOutputFrequency ::= { upsThreePhaseOutputGrp 1 }
+
+NetDiscover SNMP MIB/OID/TRAP/NOTIFICATION Database Index (no description, no download)
+URL: /MIBs/Ent/P/Phoenixtec Power Co., Ltd. (PPC)/UPS MIB file/Version 2.00/2004/08/26/Upsmate.mib
+MIB File: Upsmate.mib
+ MIB Module: XPPC-MIB
+
+
+
+RE: How to differentiate snmpwalk & snmpgetnext request ??
+Pamidipati Suresh-G20238 Thu, 08 May 2008 02:07:48 -0700
+==========================================================
+Snmpwalk is nothing but a series of snmpgetnext requests.
+For the given OID, snmpwalk first sends an snmpgetnext request. After
+receiving the response for the getnext, it retrieves the OID from the
+response and then sends snmpgetnext request on this OID. This way
+snmpgetnext requests are sent until all OIDs/variables in the subtree
+(and their values) below the given OID are retrieved.
+
+mail-archive.com/
+
+
+
+Basic Example
+=============
+The command takes a single OID, and will display a list of all the results
+which lie within the subtree rooted on this OID:
+
+ % snmpwalk -v 2c -c demopublic test.net-snmp.org system
+ SNMPv2-MIB::sysDescr.0 = HP-UX net-snmp B.10.20 A 9000/715
+ SNMPv2-MIB::sysObjectID.0 = OID: enterprises.ucdavis.ucdSnmpAgent.hpux10
+ SNMPv2-MIB::sysUpTime.0 = Timeticks: (586998396) 67 days, 22:33:03.96
+ SNMPv2-MIB::sysContact.0 = Wes Hardaker wjhardaker@ucdavis.edu
+ SNMPv2-MIB::sysName.0 = net-snmp
+ SNMPv2-MIB::sysLocation.0 = UCDavis
+ SNMPv2-MIB::sysORLastChange.0 = Timeticks: (0) 0:00:00.00
+ SNMPv2-MIB::sysORID.1 = OID: SNMPv2-MIB::snmpMIB
+ SNMPv2-MIB::sysORID.2 = OID: IF-MIB::ifMIB
+ SNMPv2-MIB::sysORID.4 = OID: IP-MIB::ip
+ SNMPv2-MIB::sysORID.5 = OID: UDP-MIB::udpMIB
+ SNMPv2-MIB::sysORDescr.1 = The Mib module for SNMPv2 entities.
+ SNMPv2-MIB::sysORDescr.2 = The MIB module to describe generic objects for network interface sub-layers
+ SNMPv2-MIB::sysORDescr.4 = The MIB module for managing IP and ICMP implementations
+ SNMPv2-MIB::sysORDescr.5 = The MIB module for managing UDP implementations
+ SNMPv2-MIB::sysORUpTime.1 = Timeticks: (82) 0:00:00.82
+ SNMPv2-MIB::sysORUpTime.2 = Timeticks: (81) 0:00:00.81
+ SNMPv2-MIB::sysORUpTime.4 = Timeticks: (83) 0:00:00.83
+ SNMPv2-MIB::sysORUpTime.5 = Timeticks: (82) 0:00:00.82
+
+net-snmp.org/
+
+
+Example
+=======
+$ snmpwalk -m +/home/marcilr/.snmp/mibs/Upsmate.mib -v 1 -c public \
+localhost .1.3.6.1.4.1.935
+$
+
+FIXME: No output from above.
+
+
+Example
+=======
+Used at DNR Network Services, OSS to fetch plugStatus values from
+WTI RPC40L8A4 box using snmpwalk:
+
+$ snmpwalk -v 2c -m ./wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3
+WTI-MPC-VMR-MIB::plugStatus.1 = INTEGER: 0
+WTI-MPC-VMR-MIB::plugStatus.2 = INTEGER: 0
+WTI-MPC-VMR-MIB::plugStatus.3 = INTEGER: 1
+WTI-MPC-VMR-MIB::plugStatus.4 = INTEGER: 1
+WTI-MPC-VMR-MIB::plugStatus.5 = INTEGER: 0
+WTI-MPC-VMR-MIB::plugStatus.6 = INTEGER: 0
+WTI-MPC-VMR-MIB::plugStatus.7 = INTEGER: 0
+WTI-MPC-VMR-MIB::plugStatus.8 = INTEGER: 0
+$
+
+
+Examples
+========
+Inspect mibs:
+
+$ snmpwalk -v 1 -c public localhost .1.3.6.1
+or
+$ snmpwalk -v 2c -c public localhost .1.3.6.1
+
+SNMPv2-MIB::sysDescr.0 = STRING: Linux covellite 3.2.0-4-amd64 \
+#1 SMP Debian 3.2.65-1+deb7u2 x86_64
+SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (138028) 0:23:00.28
+SNMPv2-MIB::sysContact.0 = STRING: Me <me@example.org>
+SNMPv2-MIB::sysName.0 = STRING: covellite
+...
+SNMP-VIEW-BASED-ACM-MIB::vacmViewTreeFamilyStatus."systemonly"\
+.8.1.3.6.1.2.1.25.1 = INTEGER: active(1)
+End of MIB
+$
+
+Pulls down 5,603 mib lines from .1.3.6.1 down.
+
+
+$ snmpwalk -c public -v2c localhost ifDescr
+IF-MIB::ifDescr.1 = STRING: lo
+IF-MIB::ifDescr.2 = STRING: eth0
+$
+
+nsrc.org/
+
+
+Links
+=====
+Debugging with the SNMPWalk Command
+Good syntax and description.
+http://download.dartware.com/docs/DevGuide/Content/02-CustomProbes/Debugging_with_SNMPWalk.htm
+
+RE: How to differentiate snmpwalk & snmpgetnext request ??
+Pamidipati Suresh-G20238 Thu, 08 May 2008 02:07:48 -0700
+https://www.mail-archive.com/net-snmp-users@lists.sourceforge.net/msg18596.html
+
+SNMP exercises, part I
+https://nsrc.org/workshops/ws-files/2011/sanog17/exercises/exercises-snmp-v1-v2c.html
+
+Net-SNMP Tutorial -- SNMPv3 Options
+Introduction
+Has snmpwalk options
+http://www.net-snmp.org/tutorial/tutorial-5/commands/snmpv3.html
+
+TUT:snmpwalk
+The snmpwalk command is designed to perform a sequence of chained GETNEXT 
+requests automatically, rather than having to issue the necessary snmpgetnext 
+requests by hand.
+http://www.net-snmp.org/wiki/index.php/TUT:snmpwalk
+
+Work with output from snmpwalk
+http://www.unleashnetworks.com/resources/articles/95-work-with-output-from-snmpwalk.html
