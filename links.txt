@@ -1,0 +1,25 @@
+links.txt
+Created Tue Mar 10 08:23:03 AKDT 2015
+Copyright (C) 2015 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+snmpwalk related links
+
+
+Links
+=====
+snmpwalk
+http://www.net-snmp.org/docs/man/snmpwalk.html
+
+Test if SNMP devices are responding correctly to SNMP queries
+Some good syntax here
+https://support.panorama9.com/hc/en-us/articles/203568188-Test-if-SNMP-devices-are-responding-correctly-to-SNMP-queries
+
+TUT:snmpwalk
+The snmpwalk command is designed to perform a sequence of chained GETNEXT
+requests automatically, rather than having to issue the necessary snmpgetnext
+requests by hand.
+http://www.net-snmp.org/wiki/index.php/TUT:snmpwalk
+
+Work with output from snmpwalk
+http://www.unleashnetworks.com/resources/articles/95-work-with-output-from-snmpwalk.html
