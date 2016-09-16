@@ -1,0 +1,113 @@
+INSTALL
+Created Tue Mar 10 08:39:24 AKDT 2015
+Copyright (C) 2015 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Installation of snmp on Debian wheezy 7.8.0 amd64
+
+
+1. Install tools and agent:
+# aptitude install snmp snmpd
+
+2. Verify snmpd is running:
+$ ps ax | grep [s]nmp
+ 4972 ?        S      0:00 /usr/sbin/snmpd -Lsd -Lf /dev/null \
+-u snmp -g snmp -I -smux -p /var/run/snmpd.pid
+$
+
+Looks good.
+
+3. If you want the OIDs to resolve to their text description,
+activate the non-free repository and install snmp-mibs-downloader:
+
+# aptitude install snmp-mibs-downloader
+
+4. Update MIBS to latest versions with:
+# download-mibs
+
+This downloads the mibs to /var/lib/mibs/
+
+5. In snmp server is running on localhost, with community string
+'public' (it is by default), you can test if MIBS are working properly
+with:
+
+$ snmpwalk -v1 -cpublic localhost
+SNMPv2-MIB::sysDescr.0 = STRING: Linux covellite 3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2 x86_64
+SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (116841) 0:19:28.41
+SNMPv2-MIB::sysContact.0 = STRING: Me <me@example.org>
+...
+HOST-RESOURCES-MIB::hrSystemMaxProcesses.0 = INTEGER: 0
+End of MIB
+$
+
+Looks good.
+
+
+6. Configure snmpd daemon in /etc/snmp/snmpd.conf:
+
+For human-readable names for OIDs, first install MIBS ( snmp-mibs-downloader
+package above) and then add the following to /etc/default/snmpd:
+
+export MIBS=/usr/share/mibs
+
+$ diff snmpd snmpd-ORIG-20150310 
+5c5
+< export MIBS=/usr/share/mibs
+---
+> export MIBS=
+$ 
+
+On inspection /usr/share/mibs has:
+$ ls -l /usr/share/mibs/
+iana -> /var/lib/mibs/iana
+ietf -> /var/lib/mibs/ietf
+netsnmp
+
+The snmp-mibs-downloader package above populated /var/lib/mibs/
+
+7. Restart snmpd for mibs update to take effect:
+# /etc/init.d/snmpd restart
+Restarting network management services: snmpd.
+#
+
+8. To allow access from localhost uncomment line in 
+/etc/snmp/snmpd.conf:
+
+rocommunity public  localhost
+
+# /etc/init.d/snmpd restart    <=== Think restart is required
+                                    for snmpd.conf change.
+
+
+9. Can no query local server as 'public' as community string:
+
+$ snmpwalk -v1 -cpublic localhost
+SNMPv2-MIB::sysDescr.0 = STRING: Linux covellite 3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2 x86_64
+SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (79754) 0:13:17.54
+SNMPv2-MIB::sysContact.0 = STRING: Me <me@example.org>
+...
+NOTIFICATION-LOG-MIB::nlmLogDateAndTime."default".1 = \
+STRING: 2015-3-10,9:23:43.0,-8:0
+$
+
+Looks good.
+
+wiki.debian.org/SNMP
+
+
+20. Updated /etc/snmp/snmp.conf such that snmp* commands that they should load ALL
+mibs in the /usr/share/mibs/ and /home/marcilr/.snmp/mibs:
+
+???
+
+FIXME: Need to update.
+
+
+
+Links
+=====
+SNMP Clients
+Source for bulk of snmp installation syntax.
+https://wiki.debian.org/SNMP
