@@ -1,0 +1,53 @@
+README
+Created Thu Jun 26 08:20:21 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Filelist
+========
+00INSTALL/
+  Installation of snmp
+
+docs/
+  Documentation
+
+glossary.txt
+  Glossary for SNMP
+
+links.txt
+  SNMP related links
+
+/media/phoenix/NSG/SNMP MIBs
+  GCI Network Services, OSS MIB path
+
+mibs/
+  MIBs - Management Information Base
+  http://en.wikipedia.org/wiki/Management_information_base
+
+options.txt
+  Options for SNMP commands
+
+
+packages.txt
+  SNMP packages for Debian
+
+snmpget/
+  communicates with a network entity using SNMP GET requests
+
+snmpgetnext/
+  communicates with a network entity using SNMP GETNEXT requests
+
+snmpset/
+  communicates with a network entity using SNMP SET requests
+
+snmp.txt
+  simple Network Management Protocol (SNMP)
+
+snmpwalk/
+  Retrieve a subtree of management values using SNMP GETNEXT requests
+
+svn_ext_val.txt
+  List of repo hierarchical directories to checkout under snmp/
+
+v3.txt
+  SNMPv3

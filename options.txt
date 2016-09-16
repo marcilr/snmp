@@ -1,0 +1,126 @@
+options.txt
+Created Mon Aug 17 10:58:23 AKDT 2015
+Copyright (C) 2015 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Options for SNMP commands
+
+
+Synopsis
+========
+SNMP_command [OPTIONS] AGENT [PARAMETERS]
+
+
+Description
+===========
+This reference page describes the common options for the SNMP commands:
+snmpbulkget, snmpbulkwalk, snmpdelta, snmpget, snmpgetnext, snmpnetstat,
+snmpset, snmpstatus, snmptable, snmptest, snmptrap, snmpusm, and snmpwalk.
+The command line applications use the SNMP protocol to communicate with an
+SNMP capable network entity, an agent.  Individual applications typically
+(but not necessarily) take additional parameters that are given after the
+agent specification.  These parameters are documented in the reference pages
+for each application.
+
+
+Options
+=======
+-a authProtocol 
+  Sets the authentication protocol (MD5|SHA) used for authenticated SNMPv3
+  messages.
+
+-A authPassword 
+  Sets the authentication pass phrase used for authenticated SNMPv3 messages.
+
+-c community 
+  Sets the community string for SNMPv1/v2c transactions.
+
+-d 
+  Dumps (in hexadecimal) the sent and received SNMP packets.
+
+-D TOKEN[,...] 
+  Turns on debugging output for the given TOKEN(s).  Try ALL for extremely
+  verbose output.
+
+-e engineID 
+  Sets the authoritative (security) engineID used for SNMPv3 REQUEST messages.
+  This is the engineID of the agent or proxy (for example, 800000020109840301).
+  (will be discovered if not supplied)
+
+-E engineID 
+  Set the context engineID used for SNMPv3 REQUEST messages scopedPdu.  This
+  is the engineID of the agent (for example, 800000020109840301).  (will be
+  authoritative engineID if not specified)
+
+-h 
+  Displays a brief usage message and then exit.
+
+-H 
+  Displays a list of configuration file directives understood by the command
+  and then exit.
+
+-I brR 
+  Specifies input parsing options. See INPUT OPTIONS below.
+
+-l secLevel 
+  Set the securityLevel used for SNMPv3 messages
+  (noAuthNoPriv|authNoPriv|authPriv).  Appropriate pass phrase(s) must
+  provided when using any level higher than noAuthNoPriv.
+
+-m MIBLIST 
+  Specifies a colon separated list of MIB modules to load for this application.
+  This overrides the environment variable MIBS.
+
+  The special keyword ALL is used to specify all modules in all directories
+  when searching for MIB files.  Every file whose name does not begin with .
+  will be parsed as if it were a MIB file.
+
+-M DIRLIST 
+  Specifies a colon separated list of directories to search for MIBs.  This
+  overrides the environment variable MIBDIRS.
+
+-n contextName 
+  Sets the destination contextName used for SNMPv3 messages.  The default
+  contextName is the empty string "".
+
+-O nEebqfsSvXT 
+  Specifies output printing options. See OUTPUT OPTIONS below.
+
+-P cdeRuwW 
+  Specifies MIB parsing options. See MIB PARSING OPTIONS below.
+
+-r retries 
+  Specifies the number of retries to be used in the requests.  The default is 5.
+
+-t timeout 
+  Specifies the timeout in seconds between retries.  The default is 1.
+
+-u secName 
+  Sets the securityName used for authenticated SNMPv3 messages.
+
+-v 1 | 2c | 3 
+  Specifies the protocol version to use: 1 (RFCs 1155-1157),
+  2c (RFCs 1901-1908), or 3 (RFCs 2571-2574).  The default is version 1.
+
+-V 
+  Displays version information for the application and then exit.
+
+-x privProtocol 
+  Sets the privacy protocol (DES) used for encrypted SNMPv3 messages.
+
+-X privPassword 
+  Sets the privacy pass phrase used for encrypted SNMPv3 messages.
+
+-Z boots,time 
+  Sets the engineBoots and engineTime used for authenticated SNMPv3 messages.
+  This will initialize the local notion of the agents boots/time with an
+  authenticated value stored in the LCD.  (will be discovered if not supplied)
+
+mkssoftware.com/
+
+
+Links
+=====
+snmpcmd
+describes common options for SNMP commands 
+https://www.mkssoftware.com/docs/man5/snmpcmd.5.asp

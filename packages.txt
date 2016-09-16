@@ -1,0 +1,12 @@
+packages.txt
+Created Tue Mar 31 09:50:50 AKDT 2015
+Copyright (C) 2015 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+SNMP packages for Debian
+
+
+snmp - SNMP (Simple Network Management Protocol) applications
+snmpd - SNMP (Simple Network Management Protocol) agents
+snmp-mibs-downloader - Install and manage Management Information Base (MIB) files
+
