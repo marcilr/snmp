@@ -1,0 +1,6 @@
+snmptrapd.txt
+Created Mon Dec 28 15:49:05 AKST 2015
+Copyright (C) 2015 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+snmptrapd - Receive and log SNMP trap messages.
