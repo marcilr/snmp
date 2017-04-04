@@ -5,6 +5,9 @@ Copyright (C) 2017 by Raymond E. Marcil <marcilr@gmail.com>
 
 Filelist
 ========
+check-existing-mibs.txt
+  Check existing MIBs
+
 get-mibsdirs.txt
   Get mibs directories
 
