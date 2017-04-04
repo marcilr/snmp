@@ -1,0 +1,15 @@
+packages.txt
+Created Fri Aug 29 08:05:39 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Net-SNMP packages (Debian wheezy 7.6 amd64)
+
+
+Packages
+========
+snmp  - SNMP (Simple Network Management Protocol) applications
+snmp-mibs-downloader - Install and manage Management Information Base
+  (MIB) files
+snmpd - SNMP (Simple Network Management Protocol) agents
+tkmib - SNMP (Simple Network Management Protocol) MIB browser
