@@ -1,0 +1,24 @@
+README
+Created Wed Apr 30 08:30:46 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Filelist
+========
+No-Such-Instance-currently-exists-at-this-OID.pdf
+  SOL9937: Error Message: No Such Instance currently exists at this OID
+
+  If you make an SNMP request for a non-existent OID, or for an OID that
+  has multiple instances without including an appropriate leaf instance
+  identifier, the system may respond with an error message that appears
+  similar to the following example:
+
+  No Such Instance currently exists at this OID
+  ...
+  To verify the suspected existence of the intended OID, you can enter the
+  snmpwalk command to iterate the entire OID branch by polling the OID
+  immediately above the original OID.  You may poll the entire disk percentage
+  usage MIB branch by typing the following command:
+
+  snmpwalk -v 2c -c public localhost .1.3.6.1.4.1.2021.9.1.9
+  http://support.f5.com/kb/en-us/solutions/public/9000/900/sol9937.html
