@@ -1,0 +1,42 @@
+installing-mibs.txt
+Created Tue Mar  4 14:54:14 AKST 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Installing MIBs
+
+
+For licensing reasons, net-snmp package installs only a small number of MIBs
+in /usr/share/mibs directory.  A large number of standard MIBs can be
+installed using snmp-mibs-downloader package:
+
+# aptitude install snmp-mibs-downloader
+# download-mibs
+To have the new MIBs recognized by net-snmp, edit /etc/snmp/snmp.conf file as
+follows:
+
+$ cat /etc/snmp/snmp.conf
+mibs +ALL
+$
+
+
+Adding additional MIBs
+======================
+To install additional MIBs you would need to create first a local ~/.snmp/mibs
+directory:
+
+$ cd ~
+$ mkdir -p .snmp/mibs
+
+Drop any additional MIB files you might have in this directory.  To install
+CISCO MIBs, download v2.tar.gz file from ftp://ftp.cisco.com (the file is
+located in pub/mibs/v2/), and move all the *.my files in the archive in
+~/.snmp/mibs directory.
+
+wordpress.com/
+
+
+Links
+=====
+Installing net-snmp MIBs on Ubuntu and Debian
+http://l3net.wordpress.com/2013/05/12/installing-net-snmp-mibs-on-ubuntu-and-debian/
