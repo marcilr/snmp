@@ -47,9 +47,3 @@ snmp.txt
 
 snmpwalk/
   Retrieve a subtree of management values using SNMP GETNEXT requests
-
-svn_ext_val.txt
-  List of repo hierarchical directories to checkout under snmp/
-
-v3.txt
-  SNMPv3
