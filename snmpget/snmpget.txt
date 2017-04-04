@@ -1,0 +1,135 @@
+snmpget.txt
+Created Mon Mar 17 11:41:07 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+snmpget - communicates with a network entity using SNMP GET requests
+
+
+The snmpget command can be used to retrieve data from a remote host given its
+host name, authentication information and an OID.
+
+sourceforge.net/
+
+
+snmpget [COMMON OPTIONS] [-Cf] OID [OID]...
+
+Options:
+  -c    Set the community string for SNMPv1/v2c transactions.
+        Overrides the defCommunity token in the snmp.conf file.
+        
+  -v 1 | 2c | 3
+        Specifies the protocol version to use: 1 (RFCs 1155-1157),
+        2c (RFCs 1901-1908), or 3 (RFCs 2571-2574).  The default is typically
+        version 3.  Overrides the defVersion token in the snmp.conf file.
+
+net-snmp.org/
+
+
+As a simple example:
+
+% snmpget -v 1 -c demopublic test.net-snmp.org system.sysUpTime.0
+system.sysUpTime.0 = Timeticks: (586731977) 67 days, 21:48:39.77
+
+In the above example, test.net-snmp.org is the host name we wanted to talk to,
+using the SNMP community string demopublic and we requested the value of the
+OID system.sysUpTime.0.
+
+Earlier versions of the ucd-snmp utilities used SNMPv1 by default and expected
+the community name to follow the host name.  The net-snmp versions of these
+tools now typically use SNMPv3 by default, and require both the version and
+the community string to be given as command line options (as illustrated in
+these examples).  SNMPv2c, which is similar in nature to SNMPv1 with small
+modifications, still used clear-text community names as "passwords" to
+authenticate the issuer of the command.  The result from a command using the
+SNMPv2c version would have been the same:
+
+
+% snmpget -v 2c -c demopublic test.net-snmp.org system.sysUpTime.0
+system.sysUpTime.0 = Timeticks: (586752671) 67 days, 21:52:06.71
+
+All of the utilities allow abbreviation of the OIDs and do random searches b
+default, and hence you can only specify a small portion of the oid if you
+would prefer:
+
+
+% snmpget -v 2c -c demopublic test.net-snmp.org sysUpTime.0
+system.sysUpTime.0 = Timeticks: (586752671) 67 days, 21:52:06.71
+
+A common mistake when using the snmpget command is to leave off the index into
+the data you're looking for.  In the above commands, the variable requested by
+the OID is a scalar and the index to scalars is always a simple '0' (zero),
+hence the trailing '.0' in all the oids above.  If you had left it off, you
+would have gotten an error.  Note that the errrors differ slightly between
+SNMPv1 and SNMPv2c:
+
+
+% snmpget -v 1 -c demopublic test.net-snmp.org sysUpTime
+Error in packet
+Reason: (noSuchName) There is no such variable name in this MIB.
+This name doesn't exist: system.sysUpTime
+% snmpget -v 2c -c demopublic test.net-snmp.org sysUpTime
+system.sysUpTime = No Such Instance currently exists
+
+Multiple variables can be retrieved in one transaction as well:
+
+
+% snmpget -v 2c -c demopublic test.net-snmp.org sysUpTime.0 ucdDemoUserList.0
+system.sysUpTime.0 = Timeticks: (586903243) 67 days, 22:17:12.43
+enterprises.ucdavis.ucdDemoMIB.ucdDemoMIBObjects.ucdDemoPublic.\
+ucdDemoUserList.0 = " noAuthUser MD5User MD5DESUser SHAUser SHADESUser"
+
+sourceforge.net/
+
+Example
+=======
+Query written at GCI, March 17, 2014, to get status of the four
+outlets on a Sever Technologies, Inc. Sentry panel.
+
+Retrieve all the outlet status values at once:
+$ snmpget -v 2c -m ~/.snmp/mibs/Sentry3.mib -c private 192.168.140.177 \
+.1.3.6.1.4.1.1718.3.2.3.1.5.1.1.1 \
+.1.3.6.1.4.1.1718.3.2.3.1.5.1.1.2 \
+.1.3.6.1.4.1.1718.3.2.3.1.5.1.2.1 \
+.1.3.6.1.4.1.1718.3.2.3.1.5.1.2.2
+Sentry3-MIB::outletStatus.1.1.1 = INTEGER: on(1)
+Sentry3-MIB::outletStatus.1.1.2 = INTEGER: on(1)
+Sentry3-MIB::outletStatus.1.2.1 = INTEGER: on(1)
+Sentry3-MIB::outletStatus.1.2.2 = INTEGER: on(1)
+$
+
+gci/projects/sentry-panel/snmp/snmpget.txt:6
+
+Use snmpget to get A1, A2, B1, and B2 outlet status
+
+
+Outlet Status for output A1
+$ snmpget -v 2c -m ~/.snmp/mibs/Sentry3.mib -c private 192.168.140.177 \
+.1.3.6.1.4.1.1718.3.2.3.1.5.1.1.1
+Sentry3-MIB::outletStatus.1.1.1 = INTEGER: on(1)
+$
+
+Outlet Status for output A2
+$ snmpget -v 2c -m ~/.snmp/mibs/Sentry3.mib -c private 192.168.140.177 \
+.1.3.6.1.4.1.1718.3.2.3.1.5.1.1.2
+Sentry3-MIB::outletStatus.1.1.2 = INTEGER: on(1)
+$
+
+
+Filelist
+========
+gci/projects/sentry-panel/snmp/snmpget.txt
+  Some fine snmpget examples
+
+
+Links
+=====
+Net-SNMP Tutorial -- snmpget
+http://net-snmp.sourceforge.net/tutorial/tutorial-5/commands/snmpget.html
+
+Net-SNMP Tutorial -- SNMPv3 Options
+http://www.net-snmp.org/tutorial/tutorial-5/commands/snmpv3.html
+
+snmpcmd - options and behaviour common to most of the
+Net-SNMP command-line tools  
+http://www.net-snmp.org/docs/man/snmpcmd.htm
