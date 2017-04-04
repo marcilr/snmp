@@ -32,10 +32,3 @@ enterprise-numbers.txt (2.7MB)
 How-do-SNMP-MIBs-and-OIDs-work.txt
   How do SNMP, MIBs and OIDs work?
   http://www.paessler.com/knowledgebase/en/topic/653-how-do-snmp-mibs-and-oids-work
-  
-installing-mibs.txt
-  Installing MIBs
-  http://l3net.wordpress.com/2013/05/12/installing-net-snmp-mibs-on-ubuntu-and-debian/
-
-v3.txt
-  SNMPv3
