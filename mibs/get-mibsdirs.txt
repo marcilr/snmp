@@ -1,0 +1,43 @@
+get-mibsdirs.txt
+Created Wed Mar  5 14:54:01 AKST 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Get mibs directories
+
+The net-snmp tools can translate numeric object identifies (OIDs) into textual
+object identifiers using the MIB description files.  The net-snmp toolkit
+provides a few of the standard MIBs, but certainly doesn't contain all the
+MIBs known to man.
+ 
+First off, you should know about the paths that the tools load MIBs from.
+By default, it loads things from the following list of directories:
+
+1. $HOME/.snmp/mibs 
+2. /usr/local/share/snmp/mibs 
+
+Note that many distributions change the default paths.  To find out which
+directories are used on your system, run the following command:
+
+net-snmp-config --default-mibdirs
+
+net-snmp.org/
+
+
+Wed Mar  5 14:54:01 AKST 2014
+=============================
+covellite:~$ net-snmp-config --default-mibdirs
+/home/marcilr/.snmp/mibs:\
+/usr/share/mibs/site:\
+/usr/share/snmp/mibs:\
+/usr/share/mibs/iana:\
+/usr/share/mibs/ietf:\
+/usr/share/mibs/netsnmp
+
+
+
+Links
+=====
+Using local MIBs
+TUT:Using and loading MIBS
+http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS
