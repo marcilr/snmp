@@ -1,13 +1,41 @@
 README
 Created Mon Nov 11 13:31:50 AKST 2013
-Copyright (C) 2017 by Raymond E. Marcil <marcilr@gmail.com>
+Copyright (C) 2013 by Raymond E. Marcil <marcilr@gmail.com>
 
 
 Filelist
 ========
+enterprise-numbers.txt (2.7MB)
+  Looking for an OID for a device?  This file last updated 2010-02-16 list
+  known registered Private Enterprise numbers.  A quick way to find where to
+  start looking for a needed oid.  Also the link below allows you to search
+  the IANA list from web interface 
+  1.3.6.1.4.1 - IANA-registered Private Enterprises
+  You can also seach for specific enterprise OID's here:
+  http://www.alvestrand.no/objectid/1.3.6.1.4.1.html
+
+  enterprise-numbers.txt:48148
+  12148
+    ELTEK Energy AS
+      Harald Johnsen
+        harald.johnsen&eltekenergy.com
+
+  Found whilst working on Eltek Valere mibs (alarm processing)
+  for GCI Network Services, OSS - January 2015.
+
+  .3.6.1.4.1 - IANA-REGISTERED PRIVATE ENTERPRISES (FIND A REGISTERED OID)
+  created by ecklerwr1 on Feb 16, 2010 12:00 AM,
+  last modified by ecklerwr1 on Feb 16, 2010 12:00 AM
+  https://thwack.solarwinds.com/docs/DOC-103393
+  https://thwack.solarwinds.com/servlet/JiveServlet/downloadBody/103393-102-1-1995/enterprise-numbers.txt
+
 How-do-SNMP-MIBs-and-OIDs-work.txt
   How do SNMP, MIBs and OIDs work?
   http://www.paessler.com/knowledgebase/en/topic/653-how-do-snmp-mibs-and-oids-work
+  
+installing-mibs.txt
+  Installing MIBs
+  http://l3net.wordpress.com/2013/05/12/installing-net-snmp-mibs-on-ubuntu-and-debian/
 
-options.txt
-  Options for SNMP commands
+v3.txt
+  SNMPv3
