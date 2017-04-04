@@ -8,5 +8,9 @@ Filelist
 get-mibsdirs.txt
   Get mibs directories
 
+installing-mibs.txt
+  Installing MIBs
+  http://l3net.wordpress.com/2013/05/12/installing-net-snmp-mibs-on-ubuntu-and-debian/
+
 mibs.txt
   MIBs - Management Information Base
