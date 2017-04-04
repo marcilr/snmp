@@ -1,0 +1,48 @@
+v3.txt
+Created Thu Jun 26 08:15:04 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+SNMPv3
+
+
+Thu Jun 26 08:15:04 AKDT 2014
+=============================
+At GCI Network Services, OSS was quertying WTI box (RPC-40L8A4) was
+turning outputs on/off with:
+
+o Turn output A1 on using snmp v3:
+
+$ /usr/bin/snmpset -v 3 -a md5 -l AuthnoPriv -u super -A super321 \
+-m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.4.1 integer 6
+WTI-MPC-VMR-MIB::plugAction.1 = INTEGER: 5
+
+o Turn output A1 off using snmp v3:
+
+$ /usr/bin/snmpset -v 3 -a md5 -l AuthnoPriv -u super -A super321 \
+-m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.4.1 integer 6
+
+
+Options
+=======
+
+Parameter	Command Line Flag         snmp.conf token
+------------------------------------------------------------------------------
+securityName    -u NAME                   defSecurityName NAME
+authProtocol    -a (MD5|SHA)              defAuthType (MD5|SHA)
+privProtocol    -x (AES|DES)              defPrivType DES
+authKey         -A PASSPHRASE             defAuthPassphrase PASSPHRASE
+privKey         -X PASSPHRASE             defPrivPassphrase PASSPHRASE
+securityLevel   -l (noAuthNoPriv|         defSecurityLevel 
+                   authNoPriv|authPriv)     (noAuthNoPriv|authNoPriv|authPriv)
+context         -n CONTEXTNAME            defContext CONTEXTNAME
+
+net-snmp.org/
+
+
+Links
+=====
+Net-SNMP Tutorial -- SNMPv3 Options
+http://www.net-snmp.org/tutorial/tutorial-5/commands/snmpv3.html
