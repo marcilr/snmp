@@ -27,20 +27,27 @@ mibs/
 mib-browsers/
   MIB browsers - Gotta view those MIBs
 
+net-snmp/
+  Net-SNMP is a suite of applications used to implement
+  SNMP v1, SNMP v2c and SNMP v3 using both IPv4 and IPv6. 
+  http://www.net-snmp.org/
+
 packages.txt
   SNMP packages for Debian
 
 snmpget/
-  communicates with a network entity using SNMP GET requests
+  Communicates with a network entity using SNMP GET requests
 
 snmpgetnext/
-  communicates with a network entity using SNMP GETNEXT requests
+  Communicates with a network entity using SNMP GETNEXT requests
 
 snmpset/
-  communicates with a network entity using SNMP SET requests
+  Communicates with a network entity using SNMP SET requests
 
 snmptranslate/
-  Snmptranslate MIB OID names between numeric and textual forms
+  Translate  MIB  OID names between numeric and textual
+  forms.  Can be used to view the MIB tree with:
+  $ snmptranslate -Tp
 
 snmp.txt
   simple Network Management Protocol (SNMP)
