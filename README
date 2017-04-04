@@ -24,10 +24,6 @@ mibs/
   MIBs - Management Information Base
   http://en.wikipedia.org/wiki/Management_information_base
 
-options.txt
-  Options for SNMP commands
-
-
 packages.txt
   SNMP packages for Debian
 
