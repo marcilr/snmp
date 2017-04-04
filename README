@@ -39,6 +39,9 @@ snmpgetnext/
 snmpset/
   communicates with a network entity using SNMP SET requests
 
+snmptranslate/
+  Snmptranslate MIB OID names between numeric and textual forms
+
 snmp.txt
   simple Network Management Protocol (SNMP)
 
