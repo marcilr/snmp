@@ -1,0 +1,101 @@
+snmpgetnext.txt
+Created Wed Apr 30 10:37:56 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+snmpgetnext - communicates with a network entity using SNMP GETNEXT requests
+
+
+Wed Apr 30 13:40:44 AKDT 2014
+=============================
+snmpgetnext is very similar to snmpget.  The major difference is the
+snmpgetnext will return the OID of the next element in the sequence.
+In this way the sequence can be easily tranversed.  This is exactly
+what snmpwalk does.
+
+Also, I noticed that snmpgetnext will loop back to the beginning of a series.
+Access to any element past the end of the series will return the OID of the
+first element in the sequence.
+
+Learned this whilst workin on the GCI Network Servies, OSS project.
+
+snmpget will through the error "No Such Instance currently exists at this OID"
+when try to access an element past the end of the series:
+
+$ snmpget -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.1
+WTI-MPC-VMR-MIB::plugStatus.1 = INTEGER: 0
+
+$ snmpget -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.2
+WTI-MPC-VMR-MIB::plugStatus.2 = INTEGER: 0
+
+$ snmpget -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.3
+WTI-MPC-VMR-MIB::plugStatus.3 = INTEGER: 1
+...
+
+$ snmpget -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.8
+WTI-MPC-VMR-MIB::plugStatus.8 = INTEGER: 0
+
+$ snmpget -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.9
+WTI-MPC-VMR-MIB::plugStatus.9 = No Such Instance currently exists at this OID
+
+There are 8 ports in the plugStatus series.  Trying to to hit a non-existant
+port with snmpget yields the "No Such Instance currently exists at this OID"
+error.
+
+
+snmpgetnext will loop around to the beginning of the sequence if an element
+past the last is accessed:
+
+$ snmpgetnext -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.1
+WTI-MPC-VMR-MIB::plugStatus.2 = INTEGER: 0
+
+Note how accessing the 1st element of the series provied the OID to the next.
+In this way the entire series can be accessed.  This is exactly how snmpwalk
+works.
+
+$ snmpgetnext -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.2
+WTI-MPC-VMR-MIB::plugStatus.3 = INTEGER: 1
+
+$ snmpgetnext -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.3
+WTI-MPC-VMR-MIB::plugStatus.4 = INTEGER: 1
+...
+
+$ snmpgetnext -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.8
+WTI-MPC-VMR-MIB::plugAction.1 = INTEGER: 0
+
+Notice how fetching the last element in the sequence yields the OID of the 1st.
+
+$ snmpgetnext -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.9
+WTI-MPC-VMR-MIB::plugAction.1 = INTEGER: 0
+
+$ snmpgetnext -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.10
+WTI-MPC-VMR-MIB::plugAction.1 = INTEGER: 0
+
+$ snmpgetnext -v 2c -m ../mibs/wti-mpc-vmr-mib.txt -c public 192.168.140.178 \
+.1.3.6.1.4.1.2634.3.100.200.1.3.11
+WTI-MPC-VMR-MIB::plugAction.1 = INTEGER: 0
+...
+
+Notice how acccessing any element past the last in the sequence only points
+back to the 1st element in the series.
+
+
+
+
+
+
+Links
+=====
+TUT:snmpgetnext
+http://www.net-snmp.org/wiki/index.php/TUT:snmpgetnext
