@@ -1,0 +1,26 @@
+snmpset.txt
+Created Wed Apr 30 14:03:07 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+snmpset - communicates with a network entity using SNMP SET requests
+
+
+snmpset is an  SNMP application that uses the SNMP SET request to set
+information on a network entity.  One or more object identifiers (OIDs
+must  be given as arguments on the command line.  A type and a value to
+be set must accompany each object identifier.
+
+
+Example
+=======
+From the GCI Network Service,OSS Sentry panel project.
+
+projects/sentry-panel/snmp/outlet-control.txt:29
+~$ snmpset -v 2c -m ~/.snmp/mibs/Sentry3.mib -c private 192.168.140.177 \
+Sentry3-MIB::outletControlAction.1.1.1 integer 1
+Sentry3-MIB::outletControlAction.1.1.1 = INTEGER: on(1)
+covellite:~$
+
+This works without issue
+
