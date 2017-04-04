@@ -1,0 +1,43 @@
+net-snmp.txt
+Created Fri Aug 29 08:01:23 AKDT 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Simple Network Management Protocol (SNMP) is a widely used protocol for
+monitoring the health and welfare of network equipment (ev2c and SNMP v3
+using both IPv4 and IPv6.  The su like UPSs. Net-SNMP is a suite of
+applications used to implement SNMP v1, SNMP v2c and SNMP v3 using both IPv4
+and IPv6. The suite includes:
+
+o Command-line applications to:
+  * retrieve information from an SNMP-capable device, either using single
+    requests (snmpget, snmpgetnext), or multiple requests (snmpwalk,
+    snmptable, snmpdelta).
+  * manipulate configuration information on an SNMP-capable device (snmpset).
+  * retrieve a fixed collection of information from an SNMP-capable device
+    (snmpdf, snmpnetstat, snmpstatus).
+  * convert between numerical and textual forms of MIB OIDs, and display MIB
+    content and structure (snmptranslate).
+o A graphical MIB browser (tkmib), using Tk/perl.
+o A daemon application for receiving SNMP notifications (snmptrapd).
+   Selected notifications can be logged (to syslog, the NT Event Log, or a
+   plain text file), forwarded to another SNMP management system, or passed
+   to an external application.
+o An extensible agent for responding to SNMP queries for management
+  information (snmpd).  This includes built-in support for a wide the SNMP
+  multiplexing (SMUX) and Agent Extensibility (AgentX) pamically loaded
+  modules, external scripts and commands, and both the SNMP multiplexing
+  (SMUX) and Agent Extensibility (AgentX) protocols.
+o A library for developing new SNMP applications, with both C and perl APIs.
+
+Net-SNMP is available for many Unix and Unix-like operating systems and also
+for Microsoft Windows.  Note: Functionality can vary depending on the
+operating system. 
+
+net-snmp.org/
+
+
+Links
+=====
+Net-SNMP
+http://www.net-snmp.org/
