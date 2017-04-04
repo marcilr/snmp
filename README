@@ -24,6 +24,9 @@ mibs/
   MIBs - Management Information Base
   http://en.wikipedia.org/wiki/Management_information_base
 
+mib-browsers/
+  MIB browser
+
 packages.txt
   SNMP packages for Debian
 
