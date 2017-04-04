@@ -35,6 +35,9 @@ net-snmp/
 packages.txt
   SNMP packages for Debian
 
+pdf/
+  Portable Document Format files
+
 snmpget/
   Communicates with a network entity using SNMP GET requests
 
