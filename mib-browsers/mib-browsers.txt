@@ -1,0 +1,47 @@
+mib-browsers.txt
+Created Tue Mar  4 15:11:50 AKST 2014
+Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+MIB browsers - Gotta view those MIBs
+
+
+tkmib
+=====
+tkmib is the MIB browser that comes stock in the Net-SNMP (snmp) package.
+Good stuff.
+
+
+qtmib
+=====
+qtmib is a MIB browser program, that allows you to connect to any SNMP-enabled
+device and browse the MIBs. The graphical user interface is built using QT4
+library. The program comes with a large number of MIBs pre-installed, anything
+from Cisco's and Juniper's to HP's and Dell's. You can also install your own
+MIBs by copying them into ~/.config/qtmib/mibs directory.
+
+For Ubuntu users, the development team makes available a deb package. Download
+and install it as:
+
+  $ sudo dpkg -i qmib_X.Y.Z_1_amd64.ubuntu.deb
+
+Start the program from the command line as qtmib or from your desktop
+environment menus.  Once started, go into File/Preferences and configure the IP
+address and community string.  Retrieve the data from your device, and click
+Translate to translate the OIDs in the result window.
+
+wordpress.com/
+
+
+Links
+=====
+Installing a MIB browser
+Installing net-snmp MIBs on Ubuntu and Debian
+http://l3net.wordpress.com/2013/05/12/installing-net-snmp-mibs-on-ubuntu-and-debian/
+
+Net-SNMP
+http://www.net-snmp.org/
+
+qtmib is an easy-to-use SNMP MIB browser. It is built as a frontend for the net-snmp tools and allows the user to query any SNMP-enabled device.  It
+supports SNMPv1 and SNMPv2c.
+http://debian.freecode.com/projects/qtmib
