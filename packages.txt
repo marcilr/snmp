@@ -12,6 +12,7 @@ File list of package snmp in wheezy of architecture amd64
 Has snmpget, snmpset, snmpstatus, snmpwalk, and snmpdelta among
 others.  Great stuff.
 
+The net-snmp package is just the snmp package in debian or ubuntu:
 
 snmp - SNMP (Simple Network Management Protocol) applications
 
