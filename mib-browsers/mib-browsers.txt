@@ -42,6 +42,7 @@ http://l3net.wordpress.com/2013/05/12/installing-net-snmp-mibs-on-ubuntu-and-deb
 Net-SNMP
 http://www.net-snmp.org/
 
-qtmib is an easy-to-use SNMP MIB browser. It is built as a frontend for the net-snmp tools and allows the user to query any SNMP-enabled device.  It
-supports SNMPv1 and SNMPv2c.
+qtmib is an easy-to-use SNMP MIB browser. It is built as a frontend for the net-snmp
+tools and allows the user to query any SNMP-enabled device.  It supports SNMPv1 and
+SNMPv2c.
 http://debian.freecode.com/projects/qtmib
