@@ -3,10 +3,20 @@ Created Tue Apr 29 13:15:42 AKDT 2014
 Copyright (C) 2014 by Raymond E. Marcil <marcilr@gmail.com>
 
 
-snmptranslate  -  translate MIB OID names between numeric
-                  and textual forms
+snmptranslate - translate MIB OID names between numeric and textual forms
 
 
+Application that translates one or more SNMP object identifier values from
+their symbolic (textual) forms into their numerical forms (or vice versa).
+
+OID is either a numeric or textual object identifier.
+
+
+Part of Net-SNMP package.
+
+
+Syntax
+======
 snmptranslate [OPTIONS] OID [OID]...
 
 
@@ -46,10 +56,49 @@ Options
 ...
 
 
-
-
 The snmptranslate command can be used to pull OIDs from a MIBs file.
 Very useful when you have no idea what the OIDS in the MIBs file are.
+
+
+Example
+=======
+You can use snmptranslate to check the MIBs have been properly installed
+by printing the MIB tree:
+
+covellite:~$ snmptranslate -Tp
++--iso(1)
+   |
+   +--org(3)
+      |
+      +--dod(6)
+         |
+         +--internet(1)
+            |
+            +--directory(1)
+            |
+            +--mgmt(2)
+            |  |
+            |  +--mib-2(1)
+            |     |
+            |     +--system(1)
+            |     |  |
+            |     |  +-- -R-- String    sysDescr(1)
+            |     |  |        Textual Convention: DisplayString
+            |     |  |        Size: 0..255
+            |     |  +-- -R-- ObjID     sysObjectID(2)
+            |     |  +-- -R-- TimeTicks sysUpTime(3)
+            |     |  |  |
+            |     |  |  +--sysUpTimeInstance(0)
+            |     |  |
+            |     |  +-- -RW- String    sysContact(4)
+            |     |  |        Textual Convention: DisplayString
+            |     |  |        Size: 0..255
+            |     |  +-- -RW- String    sysName(5)
+...
+covellite:~$
+
+Tested on GCI Network Services, OSS covellite debian wheezy 7.6 amd64
+workstation on August 29, 2014.
 
 
 How to get oids form a mib file?
@@ -61,6 +110,7 @@ paramenters:
 -m ALL
 -Pu
 -Tso
+
 
 Example
 =======
@@ -125,6 +175,11 @@ http://stackoverflow.com/questions/12507634/how-to-get-oids-form-a-mib-file
 
 HOWTO Use SnmpTranslate command
 http://wmunguiam.blogspot.com/2009/07/howto-use-snmptranslate-command.html
+
+Installing net-snmp MIBs on Ubuntu and Debian
+Layer 3 Networking Blog
+Source for first snmptranslate usage example I saw.
+http://l3net.wordpress.com/2013/05/12/installing-net-snmp-mibs-on-ubuntu-and-debian/
 
 net-snmp sample code to parse MIB file and extract trap
 related information from it
