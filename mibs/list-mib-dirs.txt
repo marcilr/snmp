@@ -1,0 +1,19 @@
+list-mib-dirs.txt
+Created Mon Apr 16 16:24:21 AKDT 2018
+Copyright (C) 2018 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Use 'net-snmp-config --default-mibdirs' to list configured
+MIB directories:
+
+$ net-snmp-config --default-mibdirs
+/home/marcilr/.snmp/mibs:\
+/usr/share/snmp/mibs:\
+/usr/share/snmp/mibs/iana:\
+/usr/share/snmp/mibs/ietf:\
+/usr/share/mibs/site:\
+/usr/share/snmp/mibs:\
+/usr/share/mibs/iana:\
+/usr/share/mibs/ietf:\
+/usr/share/mibs/netsnmp
+
