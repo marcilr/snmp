@@ -10,3 +10,6 @@ Links
 =====
 Net-SNMP
 http://www.net-snmp.org/
+
+Net-SNMP FAQ
+http://www.net-snmp.org/FAQ.html
