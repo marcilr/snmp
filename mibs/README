@@ -18,5 +18,9 @@ installing-mibs.txt
 links.txt
   MIB related links
 
+list-mib-dirs.txt
+  Use 'net-snmp-config --default-mibdirs' to list configured
+  MIB directories.
+
 mibs.txt
   MIBs - Management Information Base
