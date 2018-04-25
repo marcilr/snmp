@@ -14,7 +14,7 @@ be set must accompany each object identifier.
 
 Example
 =======
-From the GCI Network Service,OSS Sentry panel project.
+From the GCI Network Service, OSS Sentry panel project.
 
 projects/sentry-panel/snmp/outlet-control.txt:29
 ~$ snmpset -v 2c -m ~/.snmp/mibs/Sentry3.mib -c private 192.168.140.177 \
