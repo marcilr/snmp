@@ -47,6 +47,12 @@ snmpgetnext/
 snmpset/
   Communicates with a network entity using SNMP SET requests
 
+snmptrap/
+  snmptrap, snmpinform - sends an SNMP notification to a manager
+
+snmptrapd/
+  snmptrapd - Net-SNMP notification receiver
+
 snmptranslate/
   Translate  MIB  OID names between numeric and textual
   forms.  Can be used to view the MIB tree with:
